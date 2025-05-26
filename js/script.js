@@ -43,7 +43,6 @@ function zigzagmotion3() {
 }
 zigzagmotion3();
 
-
 const tl = gsap.timeline();
 
 tl.from(
@@ -71,13 +70,17 @@ tl.from(
 );
 
 gsap.set(".team-card", { transformOrigin: "bottom right" });
-tl.from(".team-card", {
-  rotation: -45,
-  x: -50,
-  opacity: 0,
-  duration: 1,
-  ease: "back.out(1.7)"
-},  "0.4");
+tl.from(
+  ".team-card",
+  {
+    rotation: -45,
+    x: -50,
+    opacity: 0,
+    duration: 1,
+    ease: "back.out(1.7)",
+  },
+  "0.4"
+);
 
 tl.from(
   ".header-text p",
@@ -94,22 +97,29 @@ tl.from(
 gsap.set(".rectangel .rec1", { transformOrigin: "top left" });
 gsap.set(".rectangel .rec2", { transformOrigin: "bottom right" });
 
-tl.from(".rectangel .rec1", {
-  rotation: -45,
-  x: -50,
-  opacity: 0,
-  duration: 1,
-  ease: "back.out(1.7)"
-}, "0");
+tl.from(
+  ".rectangel .rec1",
+  {
+    rotation: -45,
+    x: -50,
+    opacity: 0,
+    duration: 1,
+    ease: "back.out(1.7)",
+  },
+  "0"
+);
 
-tl.from(".rectangel .rec2", {
-  rotation: -45,
-  x: 50,
-  opacity: 0,
-  duration: 1,
-  ease: "back.out(1.7)"
-}, "0.2");
-
+tl.from(
+  ".rectangel .rec2",
+  {
+    rotation: -45,
+    x: 50,
+    opacity: 0,
+    duration: 1,
+    ease: "back.out(1.7)",
+  },
+  "0.2"
+);
 
 tl.from(
   [".zigzag span", ".zigzag2 span", ".zigzag3 span"],
@@ -123,15 +133,17 @@ tl.from(
   "-0.2"
 );
 
-tl.from(".btn-group button", {
-  scale: 1.2,
-  opacity: 0,
-  duration: 1,
-  delay: 0.2,
-  ease: "back.out(3.7)",
-},"0.4");
-
-
+tl.from(
+  ".btn-group button",
+  {
+    scale: 1.2,
+    opacity: 0,
+    duration: 1,
+    delay: 0.2,
+    ease: "back.out(3.7)",
+  },
+  "0.4"
+);
 
 tl.from(
   ".small-contaner .circle",
@@ -152,65 +164,72 @@ gsap.from(".right-panel", {
   ease: "back.out(1.5)", // pop effect
 });
 
-
 // second section
 
- gsap.utils.toArray(".reveal-text").forEach((el) => {
-    gsap.to(el, {
-      scrollTrigger: {
-        trigger: el,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      },
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      duration: 1,
-      ease: "power3.out"
-    });
-  });
-
-  gsap.utils.toArray(".firstcard1, .firstcard2, .firstcard3").forEach((card) => {
-    gsap.to(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: "top 75%",
-        toggleActions: "play none none reverse",
-         onEnter: () => {
-      // Animate overlay content after card appears
-      gsap.to(".firstcard1 .overlay-content", {
-        opacity: 1,
-        y: 0,
-        delay: 0.3, // wait for the card to animate first
-        duration: 0.8,
-        ease: "power2.out",
-      });
-    }
-        
-      },
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 1,
-       ease: "back.out(1.7)",
-       
-
-    });
-  });
-
-  // third section
-   gsap.to(".scroll-text", {
-    rotateX: 20,
-    // backgroundColor:red,
-    ease: "none",
+gsap.utils.toArray(".reveal-text").forEach((el) => {
+  gsap.to(el, {
     scrollTrigger: {
-      trigger: ".scrolling-banner",
-      start: "top bottom",
-      end: "bottom top",
-      // markers:true,
-      scrub: true, // smoothly animate on scroll
+      trigger: el,
+      start: "top 80%",
+      toggleActions: "play none none reverse",
     },
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    duration: 1,
+    ease: "power3.out",
   });
+});
 
+gsap.utils.toArray(".firstcard1, .firstcard2, .firstcard3").forEach((card) => {
+  gsap.to(card, {
+    scrollTrigger: {
+      trigger: card,
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+      onEnter: () => {
+        // Animate overlay content after card appears
+        gsap.to(".firstcard1 .overlay-content", {
+          opacity: 1,
+          y: 0,
+          delay: 0.3, // wait for the card to animate first
+          duration: 0.8,
+          ease: "power2.out",
+        });
+      },
+    },
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    duration: 1,
+    ease: "back.out(1.7)",
+  });
+});
 
-  
+// third section
+gsap.to(".scroll-text", {
+  rotateX: 20,
+  // backgroundColor:red,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".scrolling-banner",
+    start: "top bottom",
+    end: "bottom top",
+    // markers:true,
+    scrub: true, // smoothly animate on scroll
+  },
+});
+
+// last card
+gsap.to(".eco-card", {
+  scrollTrigger: {
+    trigger: ".eco-card",
+    start: "top 80%", // when eco-card is 80% from top of viewport
+    toggleActions: "play none none none",
+    // markers: true,
+  },
+  opacity: 1,
+  y: 0,
+  duration: 1,
+  ease: "back.out(1.7)",
+});
